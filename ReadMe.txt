@@ -4,6 +4,9 @@ to run banners
 	npm run dev 
 	select the one you want to record
 to start recording videos and gif
+	use module bannerSize.js
+	-> use the function addSize(dimensions)
+		dimension: Array of the sizes of the banner to record
 	use module record_multiple.js
 	-> use the function recordMultiple(path, portNumber, destPath, fpsVideo, fpsGif, optimizeGif)
 		path: path of the directory containing all banners
