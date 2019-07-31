@@ -1,15 +1,27 @@
 const findInFiles = require('find-in-files');
 
-
+/*
 /////////// sizes available ////////////////////////////////
-const WIDTH_300 = new RegExp('.*300.*');           //
-const HEIGHT_250 = new RegExp('.*250.*');          //
-const WIDTH_728 = new RegExp('.*728.*');           //
-const HEIGHT_90 = new RegExp('.*90.*');            //
-const WIDTH_160 = new RegExp('.*160.*');           //
-const HEIGHT_600 = new RegExp('.*600.*');          //
+const SIZES_TAB = [
+  [new RegExp('.*300.*'), 300],
+  [new RegExp('.*250.*'), 250],
+  [new RegExp('.*728.*'), 728],
+  [new RegExp('.*90.*'), 90],
+  [new RegExp('.*160.*'), 160],
+  [new RegExp('.*600.*'), 600]  ];
 ////////////////////////////////////////////////////////////
+*/
 
+let SIZES_TAB = [];
+
+// add value to SIZES_TAB
+async function addSize(tabSize)
+{
+  for (let i=0; i<tabSize.length; i++)
+  {
+    SIZES_TAB.push([new RegExp('.*'+ tabSize[i] + '.*'), tabSize[i]]);
+  }
+}
 
 
 // return the size of the banner
@@ -17,6 +29,9 @@ const HEIGHT_600 = new RegExp('.*600.*');          //
     const f = '.richmediarc';
     let resW;
     let resH;
+
+    console.log('--------banner size------------');
+
     await findInFiles.find('width\":.*,', path, f)
       .then(function (results) {
         for (let result in results) {
@@ -30,6 +45,7 @@ const HEIGHT_600 = new RegExp('.*600.*');          //
         for (let result in results) {
           let res = results[result];
           resH = res.matches[0];
+
           return;
         }
       });
@@ -42,23 +58,25 @@ const HEIGHT_600 = new RegExp('.*600.*');          //
   async function findSize(sW, sH) {
     let width, height;
 
-    // width
-    if (WIDTH_300.test(sW)) {
-      width = 300;
-    } else if (WIDTH_728.test(sW)) {
-      width = 728;
-    } else if (WIDTH_160.test(sW)) {
-      width = 160;
+    let found = 0 ;
+    let i = 0 ;
+    while(found<2 || i<SIZES_TAB.length)
+    {
+      // width
+      if(SIZES_TAB[i][0].test(sW))
+      {
+        width = SIZES_TAB[i][1] ;
+        found ++;
+      }
+      // height
+      if(SIZES_TAB[i][0].test(sH))
+      {
+        height = SIZES_TAB[i][1] ;
+        found ++;
+      }
+      i++;
     }
 
-    // height
-    if (HEIGHT_250.test(sH)) {
-      height = 250;
-    } else if (HEIGHT_90.test(sH)) {
-      height = 90;
-    } else if (HEIGHT_600.test(sH)) {
-      height = 600;
-    }
 
     return [width, height];
   }
@@ -66,5 +84,6 @@ const HEIGHT_600 = new RegExp('.*600.*');          //
 
 
 module.exports = {
+  addSize,
  getSize
 }
