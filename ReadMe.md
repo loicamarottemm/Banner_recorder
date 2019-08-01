@@ -18,13 +18,13 @@ Banner-recorder
 
 ### Using **function** in js program 
 
-#### use module record_multiple.js
+_use module record_multiple.js_
 
-	1. use the function _addBannerSize(dimensions)_
+	1. use the function addBannerSize(dimensions)
 		* dimension: Array containing the sizes of the banner to record	
 	example: addBannerSize([300,250])
 
-	2. use the function _recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, optimizeGif)_
+	2. use the function recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, optimizeGif)
 		* path: path of the directory containing all banners
 		* portNumber: port used to run banners
 		* ip: ip adess used to run banners (can be 'localhost')
