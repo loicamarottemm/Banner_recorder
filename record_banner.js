@@ -7,7 +7,7 @@ const compressGif = require('./compress_gif');
 const path = require('path');
 
 
-async function recordBanner (pathToFile,dirName, portNumber, fpsVideo, fpsGif, destPath, optimizeGif)
+async function recordBanner (pathToFile,dirName, portNumber,ip, fpsVideo, fpsGif, destPath, optimizeGif)
 {
 // find the name of the html file
   console.log('---------- NAME OF FILE : ');
@@ -26,7 +26,7 @@ async function recordBanner (pathToFile,dirName, portNumber, fpsVideo, fpsGif, d
   console.log(WIDTH + 'x' + HEIGHT);
 
 // ----------- find the url -------------------------------------------------
-  const resUrl = urlBanner.getURL(pathToFile,dirName,portNumber);
+  const resUrl = urlBanner.getURL(pathToFile,dirName,portNumber,ip);
   const urlName = resUrl[0];
   const URL = resUrl[1];
 

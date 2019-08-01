@@ -5,7 +5,7 @@ const p = require('path');
 const recordBanner = require ('./record_banner.js');
 
 
-async function recordMultiple(path, portNumber, destPath, fpsVideo, fpsGif, optimizeGif)
+async function recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, optimizeGif)
 {
   // ----------------------- find files to record ------------------------------
   console.log('---------- FILES TO RECORD : ');
@@ -27,7 +27,7 @@ async function recordMultiple(path, portNumber, destPath, fpsVideo, fpsGif, opti
   for(let i=0; i<FILE_TO_RECORD.files.length ; i++)
   {
     let pathToFile = FILE_TO_RECORD.files[i];
-    await recordBanner.recordBanner(pathToFile,p.basename(path), portNumber, fpsVideo, fpsGif, destPath, optimizeGif);
+    await recordBanner.recordBanner(pathToFile,p.basename(path), portNumber,ip, fpsVideo, fpsGif, destPath, optimizeGif);
   }
 
   process.exit(1);

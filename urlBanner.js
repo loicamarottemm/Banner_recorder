@@ -1,7 +1,7 @@
 const path = require('path');
 
 
-function getURL(pathToFile, dirName, portNumber)
+function getURL(pathToFile, dirName, portNumber,ip)
 {
   let fileNamePath = path.dirname(pathToFile);
   let nameOfHTML = path.basename(pathToFile);
@@ -12,7 +12,7 @@ function getURL(pathToFile, dirName, portNumber)
   urlName = urlName.replace(new RegExp('/', 'g'), '_');
   urlName = urlName.replace(new RegExp('\\\\', 'g'), '_');
 
-  return [urlName,'http://localhost:' + portNumber + '/' + urlName + '/' + nameOfHTML] ;
+  return [urlName,'http://'+ ip +':' + portNumber + '/' + urlName + '/' + nameOfHTML] ;
 }
 
 module.exports = {

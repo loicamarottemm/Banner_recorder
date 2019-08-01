@@ -24,7 +24,7 @@ main();
 */
 
 bannerSize.addSize([300,250,728,90,160,600]);
-recordMultiple.recordMultiple('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\src', 8000,'./vid', 20,10, true) ;
+recordMultiple.recordMultiple('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\src', 8000,'localhost','./vid', 20,10, true) ;
 
 /*
 let url = urlBanner.getURL('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\src\\728x90\\Apps_728x90_b\\index.html', 'src', 800);
