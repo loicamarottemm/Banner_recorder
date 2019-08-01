@@ -1,9 +1,13 @@
 to install modules
 	npm install
+
 to run banners
 	npm run dev 
 	select the one you want to record
+
 to start recording videos and gif
+
+------------- using function in js program ---------------------------------------------------------------
 	use module record_multiple.js
 	-> use the function addBannerSize(dimensions)
 		dimension: Array containing the sizes of the banner to record	
@@ -16,3 +20,7 @@ to start recording videos and gif
 		fpsVideo: fps for the video
 		fpsGif: fps for the gif
 		optimizeGif: boolean to optimize the size of gifs (up to 60%)
+
+---------- using command line ----------------------------------------------------------------------------
+	npm link
+	record-multiple 
