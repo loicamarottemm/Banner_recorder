@@ -33,7 +33,7 @@ async function main()
       {
         type: 'checkbox',
         name: 'files',
-        message: 'Select banners to record (press a for all)',
+        message: 'Select banners to record',
         choices: FILE_TO_RECORD.files
       },
       {
