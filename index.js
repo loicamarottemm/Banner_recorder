@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const program = require ('commander');
 const inquirer = require('inquirer');
 const FileSet = require('file-set');
 const recordBanner = require ('./record_banner.js');
@@ -89,7 +88,7 @@ async function main()
       if (!fs.existsSync(answer2.dest))
       {
         console.log('creation of folder');
-        await fs.mkdir(answer2.dest ,(err) => {if (err) throw err;});
+        fs.mkdir(answer2.dest ,(err) => {if (err) throw err;});
       }
       else
       {

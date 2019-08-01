@@ -16,7 +16,7 @@ async function recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, 
   if (!fs.existsSync(destPath))
   {
     console.log('creation of folder');
-    await fs.mkdir(destPath ,(err) => {if (err) throw err;});
+    fs.mkdir(destPath ,(err) => {if (err) throw err;});
   }
   else
   {
