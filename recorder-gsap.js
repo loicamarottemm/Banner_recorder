@@ -19,7 +19,7 @@ async function record(anim_url, width, height, filename, fps)
     '2',
     filename
   ]
-  const ffmpeg = spawn('ffmpeg', args);
+  const ffmpeg = spawn('./ffmpeg', args);
 
   const closed = new Promise((resolve, reject) =>
   {
