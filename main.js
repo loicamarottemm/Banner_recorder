@@ -23,7 +23,7 @@ async function main()
 main();
 */
 
-bannerSize.addSize([300,250,728,90,160,600]);
+recordMultiple.addBannerSize([300,250,728,90,160,600]);
 recordMultiple.recordMultiple('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\src', 8000,'localhost','./vid', 20,10, true) ;
 
 /*

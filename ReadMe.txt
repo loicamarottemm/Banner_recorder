@@ -4,10 +4,10 @@ to run banners
 	npm run dev 
 	select the one you want to record
 to start recording videos and gif
-	use module bannerSize.js
-	-> use the function addSize(dimensions)
-		dimension: Array of the sizes of the banner to record
 	use module record_multiple.js
+	-> use the function addBannerSize(dimensions)
+		dimension: Array containing the sizes of the banner to record	
+	example: addBannerSize([300,250])
 	-> use the function recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, optimizeGif)
 		path: path of the directory containing all banners
 		portNumber: port used to run banners

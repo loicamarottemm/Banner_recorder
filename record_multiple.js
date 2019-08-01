@@ -3,6 +3,7 @@ const fs = require('fs');
 const p = require('path');
 
 const recordBanner = require ('./record_banner.js');
+const bannerSize = require ('./bannerSize.js');
 
 
 async function recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, optimizeGif)
@@ -34,6 +35,13 @@ async function recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, 
 }
 
 
+async function addBannerSize(tabSize)
+{
+  bannerSize.addSize(tabSize);
+}
+
+
 module.exports = {
-  recordMultiple
+  recordMultiple,
+  addBannerSize
 }
