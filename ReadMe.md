@@ -18,7 +18,7 @@ Banner-recorder
 
 ### Using **function** in js program 
 
-	#### use module record_multiple.js
+#### use module record_multiple.js
 
 	1. use the function _addBannerSize(dimensions)_
 		* dimension: Array containing the sizes of the banner to record	
