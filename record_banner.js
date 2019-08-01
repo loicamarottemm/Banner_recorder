@@ -68,8 +68,16 @@ async function recordBanner (pathToFile,dirName, portNumber,ip, fpsVideo, fpsGif
 
 }
 
+async function addBannerSize(tabSize)
+{
+  bannerSize.addSize(tabSize);
+}
+
+
+
 module.exports = {
-  recordBanner
+  recordBanner,
+  addBannerSize
 }
 
 

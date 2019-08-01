@@ -2,8 +2,7 @@ const FileSet = require('file-set');
 const fs = require('fs');
 const p = require('path');
 
-const recordBanner = require ('./record_banner.js');
-const bannerSize = require ('./bannerSize.js');
+   const bannerSize = require ('./bannerSize.js');
 
 
 async function recordMultiple(path, portNumber, ip, destPath, fpsVideo, fpsGif, optimizeGif)
