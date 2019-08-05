@@ -39,7 +39,7 @@ console.log(url[1]);
 
 //recordBanner('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build\\src_160x600_Apps_160x600', 0, 0, 0, 0);
 
-//let url = 'http://localhost:8000/src_160x600_Search_160x600_b/index.html';
+//let url = 'http://localhost:8001/src_160x600_Search_160x600_b/index.html';
 
 let url = server.runBanner('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build\\src_160x600_Search_160x600_b');
 console.log(url);
