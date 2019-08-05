@@ -1,17 +1,5 @@
 const findInFiles = require('find-in-files');
 
-/*
-/////////// sizes available ////////////////////////////////
-const SIZES_TAB = [
-  [new RegExp('.*300.*'), 300],
-  [new RegExp('.*250.*'), 250],
-  [new RegExp('.*728.*'), 728],
-  [new RegExp('.*90.*'), 90],
-  [new RegExp('.*160.*'), 160],
-  [new RegExp('.*600.*'), 600]  ];
-////////////////////////////////////////////////////////////
-*/
-
 let SIZES_TAB = [];
 
 // add value to SIZES_TAB

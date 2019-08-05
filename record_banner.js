@@ -3,12 +3,14 @@ const recorder_gsap = require ('./recorder-gsap.js');
 const ffmpeg_gif = require('./ffmpeg-gif');
 const urlBanner = require('./urlBanner');
 const compressGif = require('./compress_gif');
+const server = require('./server.js');
 
 const path = require('path');
 
 
-async function recordBanner (pathToFile,dirName, portNumber,ip, fpsVideo, fpsGif, destPath, optimizeGif)
+async function recordBanner (pathToFile, url, fpsVideo, fpsGif, destPath, optimizeGif)
 {
+  /*
 // find the name of the html file
   console.log('---------- NAME OF FILE : ');
   let nameOfHTML = path.basename(pathToFile);
@@ -17,6 +19,8 @@ async function recordBanner (pathToFile,dirName, portNumber,ip, fpsVideo, fpsGif
 // find the path of file
   let fileNamePath = path.dirname(pathToFile);
 
+*/
+  /*
 // --------- find the size of banner -----------------------------------------
   console.log('---------- SIZE OF VIDEO : ');
   let size = await bannerSize.getSize(fileNamePath);
@@ -24,7 +28,8 @@ async function recordBanner (pathToFile,dirName, portNumber,ip, fpsVideo, fpsGif
   const HEIGHT = size[1];
 
   console.log(WIDTH + 'x' + HEIGHT);
-
+*/
+  /*
 // ----------- find the url -------------------------------------------------
   const resUrl = urlBanner.getURL(pathToFile,dirName,portNumber,ip);
   const urlName = resUrl[0];
@@ -32,8 +37,26 @@ async function recordBanner (pathToFile,dirName, portNumber,ip, fpsVideo, fpsGif
 
   console.log('---------- URL : ');
   console.log(URL);
+*/
 
+// --------- find the video/gif name ---------------------------------------------
+  let videoName = pathToFile.replace(new RegExp('/','g'), '_');
+  videoName = videoName.replace(new RegExp('.html','g'), '');
+  console.log(videoName);
+  console.log(url);
 
+  // --------- Create video .mov ----------------------------------------------
+  console.log('----------  CREATION OF VIDEO : ');
+  let res = await recorder_gsap.record(url,160,600,videoName,fpsVideo);
+  console.log(res);
+  if(res == 0)
+  {
+    console.log('Animation not running');
+    return;
+  }
+  console.log(`RES = ${res}`);
+
+/*
 // --------- find the video/gif name ---------------------------------------------
   console.log('---------- VIDEO NAME : ');
   const VIDEO_NAME = destPath+ '/' + urlName + '.mov';
@@ -65,7 +88,7 @@ async function recordBanner (pathToFile,dirName, portNumber,ip, fpsVideo, fpsGif
     console.log('----------  COMPRESSION OF GIF : ');
     await compressGif.compressGif(destPath);
   }
-
+*/
 }
 
 async function addBannerSize(tabSize)

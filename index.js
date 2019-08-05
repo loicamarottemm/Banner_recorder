@@ -5,6 +5,7 @@ const FileSet = require('file-set');
 const recordBanner = require ('./record_banner.js');
 const fs = require('fs');
 const p = require('path');
+const server = require('./server.js');
 
 
 
@@ -27,6 +28,8 @@ async function main()
   inquirer.prompt(questions1)
     .then(answer1=> {
       console.log(answer1);
+      let url = server.runBanner(answer1.input);
+      console.log(url);
       const FILE_TO_RECORD = new FileSet(answer1.input+ '/**/*.html');
       let questions2 = [
       {
@@ -35,7 +38,7 @@ async function main()
         message: 'Select banners to record',
         choices: FILE_TO_RECORD.files
       },
-      {
+ /*     {
         type: 'input',
         name: 'sizes',
         message: 'Enter all sizes of your banners: '
@@ -52,7 +55,7 @@ async function main()
         message: 'Enter port number used to run banners:',
         default: 8000
       },
-      {
+*/      {
         type:'input',
         name: 'dest',
         message: 'Enter destination path for the videos:',
@@ -82,7 +85,7 @@ async function main()
       console.log(answer2);
 
       // add dimension available for the banners
-      recordBanner.addBannerSize(range(answer2.sizes));
+    //  recordBanner.addBannerSize(range(answer2.sizes));
     
       // create a folder 
       if (!fs.existsSync(answer2.dest))
@@ -98,8 +101,17 @@ async function main()
       // record each file selected
       for(let i=0; i<answer2.files.length ; i++)
       {
+        let fileChosen = answer2.files[i].substring(answer1.input.length, answer2.files[i].length);
+        let urlFile = url + fileChosen
+        console.log(urlFile);
+
+        await recordBanner.recordBanner(fileChosen,urlFile, answer2.fpsV, answer2.fpsG, answer2.dest, answer2.optimize);
+
+        /*
         let pathToFile = answer2.files[i];
         await recordBanner.recordBanner(pathToFile,p.basename(answer1.input), answer2.portNumber,answer2.ipAdress, answer2.fpsV, answer2.fpsG, answer2.dest, answer2.optimize);
+        */
+
       }
     })
   })

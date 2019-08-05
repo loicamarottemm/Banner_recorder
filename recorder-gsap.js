@@ -4,6 +4,7 @@ const { spawn } = require('child_process');
 
 async function record(anim_url, width, height, filename, fps)
 {
+
   console.log('START VIDEO RECORDING');
   const args = [
     '-y',
@@ -42,7 +43,7 @@ async function record(anim_url, width, height, filename, fps)
     })
 
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   await page.setViewport({width: width, height: height,});
@@ -56,25 +57,20 @@ async function record(anim_url, width, height, filename, fps)
     console.log("Error, the page does not load");
   }
 
-
   await page.waitForFunction(() =>
   {
-    return new Promise(resolve =>
-    {
+    console.log('test');
+    return new Promise(resolve => {
+      console.log('test2');
       var maxCheck = 100;
       var check = 0;
-      var int = setInterval(() =>
-      {
-        if(typeof window.timeline !== 'undefined')
-        {
+      var int = setInterval(() => {
+        if (typeof window.timeline !== 'undefined') {
           resolve(true);
           clearInterval(int);
-        }
-        else
-        {
+        } else {
           check++;
-          if(maxCheck < check)
-          {
+          if (maxCheck < check) {
             clearInterval(int);
             resolve(true);
           }
@@ -83,12 +79,15 @@ async function record(anim_url, width, height, filename, fps)
     });
   });
 
+
   console.log('------------------------');
   console.log('recording...');
   try
   {
+    //.log(window.timeline.duration());
     const frames = await page.evaluate(async fps => Math.ceil(window.timeline.duration() / 1 * fps), fps);
     let frame = 0;
+
 
     // pause and reset
     await page.evaluate(() =>
@@ -99,12 +98,16 @@ async function record(anim_url, width, height, filename, fps)
 
     const nextFrame = async () =>
     {
+      console.log('----------'+frame+'/'+frames);
+
+
       await page.evaluate(async progress =>
       {
         window.timeline.progress(progress)
       }, frame / frames);
 
       const screenshot = await page.screenshot();
+
       await write(ffmpeg.stdin, screenshot);
 
       frame++;
@@ -127,6 +130,7 @@ async function record(anim_url, width, height, filename, fps)
     }
     catch(e)
     {
+      console.log(e);
       return Promise.resolve(0);
     }
 
