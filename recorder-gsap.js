@@ -1,64 +1,42 @@
 const puppeteer = require('puppeteer');
 const { spawn } = require('child_process');
 
-
-async function record(anim_url, width, height, filename, fps)
-{
-
+async function record(anim_url, width, height, filename, fps) {
   console.log('START VIDEO RECORDING');
-  const args = [
-    '-y',
-    '-f',
-    'image2pipe',
-    '-r',
-    `${fps}`,
-    '-i',
-    '-',
-    '-pix_fmt',
-    'yuv420p',
-    '-crf',
-    '2',
-    filename
-  ]
+  const args = ['-y', '-f', 'image2pipe', '-r', `${fps}`, '-i', '-', '-pix_fmt', 'yuv420p', '-crf', '2', filename];
   const ffmpeg = spawn('./ffmpeg', args);
 
-  const closed = new Promise((resolve, reject) =>
-  {
-    console.log('closed');
+  const closed = new Promise((resolve, reject) => {
     ffmpeg.on('error', reject);
-    ffmpeg.on('close', resolve);
+    ffmpeg.on('close', e => {
+      console.log('closed');
+      resolve(e);
+    });
   });
 
   //ffmpeg.stdout.pipe(process.stdout);
   //ffmpeg.stderr.pipe(process.stderr);
 
   const write = (stream, buffer) =>
-    new Promise((resolve, reject) =>
-    {
-      stream.write(buffer, error =>
-      {
+    new Promise((resolve, reject) => {
+      stream.write(buffer, error => {
         if (error) return reject(error);
         resolve();
-      })
-    })
-
+      });
+    });
 
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
-  await page.setViewport({width: width, height: height,});
+  await page.setViewport({ width: width, height: height });
 
-  try
-  {
+  try {
     await page.goto(anim_url);
-  }
-  catch (e)
-  {
-    console.log("Error, the page does not load");
+  } catch (e) {
+    console.log('Error, the page does not load');
   }
 
-  await page.waitForFunction(() =>
-  {
+  await page.waitForFunction(() => {
     console.log('test');
     return new Promise(resolve => {
       console.log('test2');
@@ -79,31 +57,24 @@ async function record(anim_url, width, height, filename, fps)
     });
   });
 
-
   console.log('------------------------');
   console.log('recording...');
-  try
-  {
+  try {
     //.log(window.timeline.duration());
     const frames = await page.evaluate(async fps => Math.ceil(window.timeline.duration() / 1 * fps), fps);
     let frame = 0;
 
-
     // pause and reset
-    await page.evaluate(() =>
-    {
+    await page.evaluate(() => {
       window.timeline.pause();
       window.timeline.progress(0);
     });
 
-    const nextFrame = async () =>
-    {
-      console.log('----------'+frame+'/'+frames);
+    const nextFrame = async () => {
+      console.log('----------' + frame + '/' + frames);
 
-
-      await page.evaluate(async progress =>
-      {
-        window.timeline.progress(progress)
+      await page.evaluate(async progress => {
+        window.timeline.progress(progress);
       }, frame / frames);
 
       const screenshot = await page.screenshot();
@@ -112,34 +83,26 @@ async function record(anim_url, width, height, filename, fps)
 
       frame++;
 
-      if (frame > frames)
-      {
+      if (frame > frames) {
         await browser.close();
         ffmpeg.stdin.end();
 
-        console.log("---- Video done");
+        console.log('---- Video done');
 
         await closed;
         return Promise.resolve('done');
       }
 
       return await nextFrame();
-    }
+    };
 
     return await nextFrame();
-    }
-    catch(e)
-    {
-      console.log(e);
-      return Promise.resolve(0);
-    }
-
+  } catch (e) {
+    console.log(e);
+    return Promise.resolve(0);
+  }
 }
-
-
-
-
 
 module.exports = {
-  record
-}
+  record,
+};
