@@ -36,15 +36,11 @@ async function record(anim_url, width, height, filename, fps) {
     console.log('Error, the page does not load');
   }
 
-  console.log('test0');
-
 
 
  await page.waitForFunction(() =>
   {
-    console.log('test1');
     return new Promise(resolve => {
-      console.log('test2');
       var maxCheck = 100;
       var check = 0;
       var int = setInterval(() => {

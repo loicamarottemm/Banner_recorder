@@ -41,7 +41,10 @@ console.log(url[1]);
 
 //let url = 'http://localhost:8001/src_160x600_Search_160x600_b/index.html';
 
+/*
 let url = server.runBanner('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build\\src_160x600_Search_160x600_b');
 console.log(url);
 gsap.record(url, 160, 600, './videos/test.mov', 10);
+*/
 
+recordMultiple.recordMultiple('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build', './videos', 10, 10, true);

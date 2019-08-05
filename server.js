@@ -13,7 +13,6 @@ function runBanner(path)
   return url;
 }
 
-
 module.exports = {
   runBanner
 };
