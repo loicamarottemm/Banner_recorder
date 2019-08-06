@@ -15,7 +15,7 @@ Banner-recorder
 
 use module record_multiple.js
 
-use the function recordMultiple(path, destPath, classSizeBanner, fpsVideo, fpsGif, optimizeGif)
+* use the function recordMultiple(path, destPath, classSizeBanner, fpsVideo, fpsGif, optimizeGif)
 	* path: path of the directory containing all banners
 	* destPath: path destination for videos and gifs
 	* classSizeBanner: CSS class ot ID containing the size of the banner
