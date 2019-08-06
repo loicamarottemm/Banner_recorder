@@ -8,10 +8,8 @@ const server = require('./server.js');
 const path = require('path');
 
 
-async function recordBanner (pathToFile, url, fpsVideo, fpsGif, destPath, optimizeGif)
+async function recordBanner (pathToFile, url, classSizeBanner, fpsVideo, fpsGif, destPath, optimizeGif)
 {
-  const HEIGHT = 600 ;
-  const WIDTH = 160 ;
 // --------- find the video/gif name ---------------------------------------------
   let animName = pathToFile.replace(new RegExp('/','g'), '_');
   animName = animName.replace(new RegExp('.html','g'), '');
@@ -22,7 +20,7 @@ async function recordBanner (pathToFile, url, fpsVideo, fpsGif, destPath, optimi
 
   // --------- Create video .mov ----------------------------------------------
   console.log('----------  CREATION OF VIDEO : ');
-  let res = await recorder_gsap.record(url,WIDTH,HEIGHT,videoName,fpsVideo);
+  let res = await recorder_gsap.record(url,classSizeBanner, videoName,fpsVideo);
   console.log(res);
   if(res == 0)
   {

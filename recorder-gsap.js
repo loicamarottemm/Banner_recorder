@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const { spawn } = require('child_process');
 
-async function record(anim_url, width, height, filename, fps) {
+async function record(anim_url, classSizeBanner, filename, fps) {
   console.log('START VIDEO RECORDING');
   const args = ['-y', '-f', 'image2pipe', '-r', `${fps}`, '-i', '-', '-pix_fmt', 'yuv420p', '-crf', '2', filename];
   const ffmpeg = spawn('./ffmpeg', args);
@@ -27,8 +27,6 @@ async function record(anim_url, width, height, filename, fps) {
 
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
-
-  await page.setViewport({ width: width, height: height });
 
   try {
     await page.goto(anim_url);
@@ -58,10 +56,27 @@ async function record(anim_url, width, height, filename, fps) {
     });
   });
 
+
   console.log('------------------------');
   console.log('recording...');
   try
   {
+
+    const size = await page.evaluate((classSizeBanner)=>
+    {
+      const banner = document.querySelector(classSizeBanner) ;
+      const style = getComputedStyle(banner);
+      return [style.width, style.height];
+    },classSizeBanner)
+
+    console.log(size);
+    const WIDTH = parseInt(size[0].replace( ' px',''));
+    const HEIGHT = parseInt(size[1].replace( ' px',''));
+
+    console.log(WIDTH +'x'+HEIGHT);
+
+    await page.setViewport({ width: WIDTH, height: HEIGHT });
+
     const frames = await page.evaluate(async fps => Math.ceil(window.timeline.duration() / 1 * fps), fps);
     let frame = 0;
 

@@ -30,6 +30,12 @@ async function main()
         message: 'Select banners to record',
         choices: FILE_TO_RECORD.files
       },
+        {
+          type:'input',
+          name:'classSizeBanner',
+          message:'Which CSS class or id contain the sizes of the banners ?',
+          default:'.banner'
+        },
       {
         type:'input',
         name: 'dest',
@@ -77,7 +83,7 @@ async function main()
         let urlFile = url + fileChosen
         console.log(urlFile);
 
-        await recordBanner.recordBanner(fileChosen,urlFile, answer2.fpsV, answer2.fpsG, answer2.dest, answer2.optimize);
+        await recordBanner.recordBanner(fileChosen,urlFile,answer2.classSizeBanner, answer2.fpsV, answer2.fpsG, answer2.dest, answer2.optimize);
       }
     })
   })

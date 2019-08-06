@@ -8,7 +8,7 @@ const recordBanner = require ('./record_banner.js');
    const bannerSize = require ('./bannerSize.js');
 
 
-async function recordMultiple(path, destPath, fpsVideo, fpsGif, optimizeGif)
+async function recordMultiple(path, destPath,classSizeBanner, fpsVideo, fpsGif, optimizeGif)
 {
   // ----------------------- Run banners ---------------------------------------
   let url = server.runBanner(path);
@@ -36,7 +36,7 @@ async function recordMultiple(path, destPath, fpsVideo, fpsGif, optimizeGif)
     let urlFile = url + fileChosen;
     console.log(urlFile);
 
-    await recordBanner.recordBanner(fileChosen,urlFile, fpsVideo, fpsGif, destPath, optimizeGif);
+    await recordBanner.recordBanner(fileChosen,urlFile,classSizeBanner, fpsVideo, fpsGif, destPath, optimizeGif);
   }
 
   /*

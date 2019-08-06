@@ -47,4 +47,7 @@ console.log(url);
 gsap.record(url, 160, 600, './videos/test.mov', 10);
 */
 
-recordMultiple.recordMultiple('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build', './videos', 10, 10, true);
+recordMultiple.recordMultiple('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build', './videos','.banner', 10, 10, true);
+
+//let url = server.runBanner('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build\\src_160x600_Apps_160x600');
+//console.log(url);

@@ -16,3 +16,4 @@ function runBanner(path)
 module.exports = {
   runBanner
 };
+
