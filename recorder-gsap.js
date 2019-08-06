@@ -9,7 +9,6 @@ async function record(anim_url, classSizeBanner, filename, fps) {
   const closed = new Promise((resolve, reject) => {
     ffmpeg.on('error', reject);
     ffmpeg.on('close', e => {
-      console.log('closed');
       resolve(e);
     });
   });
@@ -57,7 +56,6 @@ async function record(anim_url, classSizeBanner, filename, fps) {
   });
 
 
-  console.log('------------------------');
   console.log('recording...');
   try
   {
@@ -69,11 +67,8 @@ async function record(anim_url, classSizeBanner, filename, fps) {
       return [style.width, style.height];
     },classSizeBanner)
 
-    console.log(size);
     const WIDTH = parseInt(size[0].replace( ' px',''));
     const HEIGHT = parseInt(size[1].replace( ' px',''));
-
-    console.log(WIDTH +'x'+HEIGHT);
 
     await page.setViewport({ width: WIDTH, height: HEIGHT });
 
@@ -87,7 +82,7 @@ async function record(anim_url, classSizeBanner, filename, fps) {
     });
 
     const nextFrame = async () => {
-      console.log('----------' + frame + '/' + frames);
+      console.log('---------- ' + frame + '/' + frames);
 
       await page.evaluate(async progress => {
         window.timeline.progress(progress);

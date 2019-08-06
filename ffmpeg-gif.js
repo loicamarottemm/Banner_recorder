@@ -19,7 +19,6 @@ async function createGif(input, output,fpsG){
   let proc = spawn('./ffmpeg', pass1Flags);
   const closed = new Promise((resolve, reject) =>
   {
-    console.log('closed');
     proc.on('error', reject);
     proc.on('close', resolve);
   });
@@ -29,7 +28,6 @@ async function createGif(input, output,fpsG){
   let proc2 = spawn('./ffmpeg', pass2Flags);
   const closed2 = new Promise((resolve, reject) =>
   {
-    console.log('closed');
     proc2.on('error', reject);
     proc2.on('close', resolve);
   });

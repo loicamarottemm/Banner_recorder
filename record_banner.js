@@ -39,7 +39,7 @@ async function recordBanner (pathToFile, url, classSizeBanner, fpsVideo, fpsGif,
   if(optimizeGif)
   {
     console.log('----------  COMPRESSION OF GIF : ');
-    await compressGif.compressGif(destPath);
+    let res3 = await compressGif.compressGif(destPath);
   }
 
 }

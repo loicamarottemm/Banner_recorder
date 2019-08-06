@@ -18,7 +18,7 @@ async function compressGif(path)
       console.log(err);
     }
   })
-
+  return Promise.resolve('done compressing gif');
 }
 
 
