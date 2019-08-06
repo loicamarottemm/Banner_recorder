@@ -1,12 +1,7 @@
 const FileSet = require('file-set');
 const fs = require('fs');
-const p = require('path');
 const server = require('./server.js');
 const recordBanner = require ('./record_banner.js');
-
-
-   const bannerSize = require ('./bannerSize.js');
-
 
 async function recordMultiple(path, destPath,classSizeBanner, fpsVideo, fpsGif, optimizeGif)
 {
@@ -38,26 +33,9 @@ async function recordMultiple(path, destPath,classSizeBanner, fpsVideo, fpsGif, 
 
     await recordBanner.recordBanner(fileChosen,urlFile,classSizeBanner, fpsVideo, fpsGif, destPath, optimizeGif);
   }
-
-  /*
-
-  for(let i=0; i<FILE_TO_RECORD.files.length ; i++)
-  {
-    let pathToFile = FILE_TO_RECORD.files[i];
-    await recordBanner.recordBanner(pathToFile,p.basename(path), portNumber,ip, fpsVideo, fpsGif, destPath, optimizeGif);
-  }
-*/
   process.exit(1);
 }
 
-
-async function addBannerSize(tabSize)
-{
-  bannerSize.addSize(tabSize);
-}
-
-
 module.exports = {
-  recordMultiple,
-  addBannerSize
+  recordMultiple
 }
