@@ -19,7 +19,6 @@ async function main()
 
   inquirer.prompt(questions1)
     .then(answer1=> {
-      console.log(answer1);
       let url = server.runBanner(answer1.input);
       console.log(url);
       const FILE_TO_RECORD = new FileSet(answer1.input+ '/**/*.html');

@@ -1,4 +1,3 @@
-const bannerSize = require ('./bannerSize.js');
 const recorder_gsap = require ('./recorder-gsap.js');
 const ffmpeg_gif = require('./ffmpeg-gif');
 const compressGif = require('./compress_gif');
@@ -36,13 +35,14 @@ async function recordBanner (pathToFile, url, classSizeBanner, fpsVideo, fpsGif,
   {
     console.log('----------  COMPRESSION OF GIF : ');
     let res3 = await compressGif.compressGif(destPath);
+    console.log(`RES = ${res3}`);
   }
 
 }
 
 
 module.exports = {
-  recordBanner,
+  recordBanner
 }
 
 
