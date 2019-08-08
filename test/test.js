@@ -27,7 +27,7 @@ describe('recorder-gsap', function()
       this.timeout(15000);
       let url = server.runBanner('./test/testFile/src_300x250_test');
       console.log(url);
-      return recorder_gsap.record(url, '.banner', './test/videos/test.mov', 10).then(function (res) {
+      return recorder_gsap.record(url, '.banner', './test/test.mov', 10).then(function (res) {
         assert.equal('done',res);
       });
     })
@@ -40,7 +40,7 @@ describe('ffmpeg-gif', function()
   {
     it('should return \'done gif\' if the gif creation went well', function()
     {
-      return ffmpeg_gif.createGif('./test/videos/test.mov', './test/videos/test.gif',10).then(function (res) {
+      return ffmpeg_gif.createGif('./test/test.mov', './test/test.gif',10).then(function (res) {
         assert.equal('done gif',res);
       });
     })
@@ -54,7 +54,7 @@ describe('compress-gif', function()
   {
     it('should return \'done compressing gif\' if the gif compression went well', function()
     {
-      return compress_gif.compressGif('./test/videos').then(function (res) {
+      return compress_gif.compressGif('./test').then(function (res) {
         assert.equal('done compressing gif',res);
       });
     })

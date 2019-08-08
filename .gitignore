@@ -1,3 +1,5 @@
 .idea/
 node_modules/
-test/videos/*
+test/*.gif
+test/*.mov
+log/
