@@ -10,4 +10,5 @@ deploy:
   api_key: $NPM_TOKEN
 
 before_install:
-  - sudo apt-get install -y ffmpeg; fi
+  - sudo apt update
+  - sudo apt install ffmpeg
