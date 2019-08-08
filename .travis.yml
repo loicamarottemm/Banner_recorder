@@ -1,17 +1,1 @@
 language: node_js
-
-node_js:
-- '12'
-
-sudo:false
-
-deploy:
-	provider: npm
-	skip_cleanup: true
-	email: "loica.marotte@gmail.com"
- 	api_key: $NPM_TOKEN
-   	on:
-     	 tags: true
-     	 node: '12'
-	 branch: master
-
