@@ -6,6 +6,9 @@ node_js:
 deploy:
 	provider: npm
 	skip_cleanup: true
-	keep_history: true
-	on:
-		branch:master
+ 	api_key: $NPM_TOKEN
+   	on:
+     	 tags: true
+     	 node: '12'
+
+
