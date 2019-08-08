@@ -25,7 +25,7 @@ describe('recorder-gsap', function()
     it('should return \'done\' if recording went well', function()
     {
       this.timeout(15000);
-      let url = server.runBanner('./test/testFile');
+      let url = server.runBanner('./test/testFile/src_300x250_test');
       console.log(url);
       return recorder_gsap.record(url, '.banner', './test/videos/test.mov', 10).then(function (res) {
         assert.equal('done',res);
