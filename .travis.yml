@@ -12,3 +12,4 @@ deploy:
 before_install:
   - sudo apt update
   - sudo apt install ffmpeg
+  - ffmpeg -version
