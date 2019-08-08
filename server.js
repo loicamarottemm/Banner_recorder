@@ -1,19 +1,36 @@
 const express = require('express');
+const http = require('http');
 const app = express() ;
 
+const host = 'localhost' ;
+
+let server ;
 
 function runBanner(path)
 {
   app.use(express.static (path));
-  let host = 'localhost' ;
-  let port = 8000;
 
-  const server = app.listen(port, host) ;
-  let url = 'http://'+ host + ':'+port ;
+  server = http.createServer(app);
+  console.log(path);
+
+  server.listen() ;
+
+  let url = 'http://'+ host + ':'+ server.address().port ;
+
   return url;
 }
 
+async function closeServer()
+{
+  server.close(function(){
+    console.log('server stopped');
+  });
+}
+
+
+
 module.exports = {
-  runBanner
+  runBanner,
+  closeServer
 };
 

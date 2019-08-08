@@ -1,7 +1,5 @@
 const { recordBanner } = require('./record_banner');
-const bannerSize = require ('./bannerSize.js');
 const recordMultiple = require('./record_multiple');
-const urlBanner = require('./urlBanner');
 const compressGif = require('./compress_gif');
 const gsap = require('./recorder-gsap');
 const server = require('./server.js');
@@ -41,13 +39,24 @@ console.log(url[1]);
 
 //let url = 'http://localhost:8001/src_160x600_Search_160x600_b/index.html';
 
+
+
 /*
-let url = server.runBanner('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build\\src_160x600_Search_160x600_b');
-console.log(url);
-gsap.record(url, 160, 600, './videos/test.mov', 10);
+  setTimeout(async() => {
+   // await server.closeServer();
+
+    console.log(server.runBanner('./test/testFile/src_160x600_SharedChannels_160x600'));
 */
 
-recordMultiple.recordMultiple('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build', './videos','.banner', 10, 10, true);
+
+//  }, 5000);
+ let url = server.runBanner('./test/testFile/src_300x250_search_300x250');
+  console.log(url);
+
+//gsap.record(url, '.banner', './videos/test.mov', 10);
+
+
+//recordMultiple.recordMultiple('C:\\Users\\loica.marotte\\Desktop\\Banner_recorder\\test\\testFile', './videos','.banner', 10, 10, true);
 
 //let url = server.runBanner('C:\\xampp\\htdocs\\banners\\k\\slack-monetization-campaign\\build\\src_160x600_Apps_160x600');
 //console.log(url);
