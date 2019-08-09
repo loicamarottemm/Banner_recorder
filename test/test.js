@@ -55,7 +55,7 @@ describe('compress-gif', function()
     it('should return \'done compressing gif\' if the gif compression went well', function()
     {
       return compress_gif.compressGif('./test').then(function (res) {
-        assert.equal('done compressing gif',res);
+        assert.equal('gif compressed',res);
       });
     })
   })
