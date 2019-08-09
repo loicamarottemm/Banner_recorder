@@ -16,7 +16,7 @@ async function createGif(input, output,fpsG){
   let pass2Flags = [ '-y', inputFlag, '-i', tmpFileName, filter2, '-f', 'gif',  output ].filter(Boolean).reduce(flat, []);
 
   // first pass
-  let proc = spawn('./ffmpeg', pass1Flags);
+  let proc = spawn('ffmpeg', pass1Flags);
   const closed = new Promise((resolve, reject) =>
   {
     proc.on('error', reject);
@@ -25,7 +25,7 @@ async function createGif(input, output,fpsG){
 
   // second pass when it is done
   await closed ;
-  let proc2 = spawn('./ffmpeg', pass2Flags);
+  let proc2 = spawn('ffmpeg', pass2Flags);
   const closed2 = new Promise((resolve, reject) =>
   {
     proc2.on('error', reject);

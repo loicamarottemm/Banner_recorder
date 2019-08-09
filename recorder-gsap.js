@@ -4,7 +4,7 @@ const { spawn } = require('child_process');
 async function record(anim_url, classSizeBanner, filename, fps) {
   console.log('START VIDEO RECORDING');
   const args = ['-y', '-f', 'image2pipe', '-r', `${fps}`, '-i', '-', '-pix_fmt', 'yuv420p', '-crf', '2', filename];
-  const ffmpeg = spawn('./ffmpeg', args);
+  const ffmpeg = spawn('ffmpeg', args);
 
   const closed = new Promise((resolve, reject) => {
     ffmpeg.on('error', reject);
